@@ -2,9 +2,10 @@
 const express = require("express")
 const app =express()
 const port =5000
+const UserRegister = require("./Routes/Authentication/Register")
 
-const mongoose = require("mongoose")
 
+app.use("/",UserRegister)
 
 
 app.listen(port ,()=>{

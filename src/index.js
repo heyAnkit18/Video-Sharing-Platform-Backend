@@ -12,7 +12,7 @@ app.use(cors());
 
 app.use("/", require("./Routes/Authentication/Register"));
 // app.use("/", require("./Routes/Authentication/Signin"));
-// app.use("/", require("./Routes/Videos/VideoSearch"));
+app.use("/", require("./Routes/Videos/VideoSearch"));
 // app.use("/", require("./Routes/Videos/VideoUpload"));
 
 app.listen(port ,()=>{

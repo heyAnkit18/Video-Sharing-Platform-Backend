@@ -1,6 +1,7 @@
 const express = require("express")
 const app =express()
-const port =5000
+const port =8080
+const mongooos = require("mongoose")
 const cors = require("cors");
 const bodyParser = require("body-parser");
 

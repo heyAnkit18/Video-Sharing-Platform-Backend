@@ -5,8 +5,9 @@ const  bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const User = require("../../models/UserSchema")
 const cookieParser = require("cookie-parser")
-router.use(cookieParser())
 const JwtAuth =require("./JwtVerify")
+router.use(cookieParser())
+
 
 
 
@@ -21,16 +22,16 @@ router.post("/signin",async(req,res)=>{
         })
     }
     
-        let user = await User.findOne({email : email});
+        const user = await User.findOne({email : email});
         if(user) {
             const isMatch = await bcrypt.compare(password,user.password)
            if(isMatch){
-            const token = jwt.sign({userId : user["_id"]},process.env.SECRET_KEY)
-            res.status(200).json({
-                token:token,
-                status:"sucess",
-                message:"User Login Sucessfully"
-            })
+            const token = await user.generateAuthToken();
+            // res.status(200).json({
+            //     token:token,
+            //     status:"sucess",
+            //     message:"User Login Sucessfully"
+            // })
             res.cookie("jwtoken",token,{
                 expires:new Date(Date.now()+25892000000),
                 httpOnly:true
@@ -42,7 +43,13 @@ router.post("/signin",async(req,res)=>{
                res.status(400).send("invalid password")
             }
             
+            }else{
+                res.status(404).json({
+                    status:"failure",
+                    message:"user not found"
+                })
             }
+     
     }
        
 catch (err) {
@@ -57,7 +64,7 @@ router.post("/logout",JwtAuth,async (req,res)=>{
         res.clearCookie("jwtoken");
         req.user.tokens=[];
         await req.user.save();
-        res.status(200).send({msg:"logout succesfully",user:req.user});
+        res.status(200).send({msg:"logout succesfully",user:req.user.name});
 
         
         

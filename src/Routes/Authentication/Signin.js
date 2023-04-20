@@ -36,7 +36,7 @@ router.post("/signin",async(req,res)=>{
                 expires:new Date(Date.now()+25892000000),
                 httpOnly:true
                });
-               res.status(200).send({data:token,userId:user._id})
+               res.status(200).send({token:token,userId:user._id})
 
                
             }else{

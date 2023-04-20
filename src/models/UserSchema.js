@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-
-
-
-=======
 const mongoose = require("mongoose")
 
 
@@ -42,5 +37,4 @@ const userSchema=new mongoose.Schema({
 const User = mongoose.model("users",userSchema)
 module .exports= User
 
->>>>>>> fbd556a14e328829d3de69c2d9715fc44ccb159a
 

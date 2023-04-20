@@ -27,3 +27,21 @@ router.post("/VideoUpload",auth ,async (req, res) => {
     res.status(404).send("error");
   }
 });
+
+router.get("/myvidoes", async(req, res) => {
+  const UserID = req.user._id;
+  const myvidoes = await VideoSchema.find({UserID: UserID})
+  res.status(200).json(myvidoes);
+})
+
+router.get("/home", async (req, res) => {
+  try{
+    const homeVideos = await VideoSchema.aggregate([{$sample: {size:36}}]);
+    res.status(200).json(homeVideos);
+  } 
+  catch(error){
+    res.status(404).json({status: "Failed", message: error.message});
+  }
+})
+
+module.exports = router;

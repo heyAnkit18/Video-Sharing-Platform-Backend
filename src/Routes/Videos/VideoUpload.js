@@ -1,11 +1,11 @@
 const express = require("express");
 require("../database/connect.js");
-
+const JwtAuth = require("../Authentication/JwtVerify.js");
 const VideoSchema = require("../models/VideoSchema.js");
 
 const router = express.Router();
 
-router.post("/VideoUpload", async (req, res) => {
+router.post("/VideoUpload", JwtAuth, async (req, res) => {
   const UserID = req.user._id;
 
   const { Title, Describtion, ImageURL, VideoURL, Category, Visiblity } =
@@ -27,7 +27,7 @@ router.post("/VideoUpload", async (req, res) => {
   }
 });
 
-router.get("/myvidoes", async(req, res) => {
+router.get("/myvidoes", JwtAuth, async(req, res) => {
   const UserID = req.user._id;
   const myvidoes = await VideoSchema.find({UserID: UserID})
   res.status(200).json(myvidoes);

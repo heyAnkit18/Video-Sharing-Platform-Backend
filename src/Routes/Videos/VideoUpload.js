@@ -1,8 +1,8 @@
 const express = require("express");
 require("../../database/connect.js");
-
+const JwtAuth = require("../Authentication/JwtVerify.js");
 const VideoSchema = require("../../models/VideoSchema.js");
-const auth=require("../middleware/auth.js");
+
 
 const router = express.Router();
 

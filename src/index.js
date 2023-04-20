@@ -1,6 +1,6 @@
 const express = require("express")
 const app =express()
-const port =5000
+const port =8080;
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -18,3 +18,4 @@ app.use("/", require("./Routes/Videos/VideoUpload"));
 app.listen(port ,()=>{
     console.log(`backend server running on ${port}`);
 })
+module.exports =app

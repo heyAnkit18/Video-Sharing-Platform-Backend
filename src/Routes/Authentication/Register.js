@@ -8,17 +8,14 @@ router.use(bodyparser.json());
 
 router.post('/Register',async(req,res)=>{
     const{name,email,phone,profession,password}=req.body
-    // const salt = await bcrypt.genSalt(10);
-    // const hashPassword=await bcrypt.hash(password,10);
-    // const conformHashPassword=await bcrypt.hash(confirmpassword,10);
 
 
     if(name && email && phone && profession && password){
-            const data = await User.findOne({name:name,email:email,phone:phone,profession:profession,password:password});
-            if(data!==null){
+            const data = await User.findOne({email:email});
+            if(data){
                 res.status(400).json({
                     status:"failure",
-                    message:"phone number all ready existed"               
+                    message:"email  all ready existed"               
                  })
             }
             else{

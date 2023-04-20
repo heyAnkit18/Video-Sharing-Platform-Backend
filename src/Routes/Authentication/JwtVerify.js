@@ -5,14 +5,12 @@ const JwtAuth = async(req,res,next)=>{
 
     try{
         const token=req.body.newToken;
-        console.log(token)
 
         const verifyUser=jwt.verify(token,process.env.SECRET_KEY);
         if(!verifyUser){
-            res.sendStatus(402);
+            res.status(402);
         }
         const user=await User.findOne({_id:verifyUser._id});
-        console.log(user)
         req.token=token;
         req.user=user;
         next();

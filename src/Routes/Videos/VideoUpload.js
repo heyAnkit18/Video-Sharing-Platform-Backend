@@ -1,11 +1,12 @@
 const express = require("express");
-require("../database/connect.js");
+require("../../database/connect.js");
 
-const VideoSchema = require("../models/VideoSchema.js");
+const VideoSchema = require("../../models/VideoSchema.js");
+const auth=require("../middleware/auth.js");
 
 const router = express.Router();
 
-router.post("/VideoUpload", async (req, res) => {
+router.post("/VideoUpload",auth ,async (req, res) => {
   const UserID = req.user._id;
 
   const { Title, Describtion, ImageURL, VideoURL, Category, Visiblity } =

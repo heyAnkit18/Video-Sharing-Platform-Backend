@@ -20,8 +20,8 @@ app.use(require("./router/Register.js"))
 app.use(require("./router/Signin.js"));
 
 
-const User=require("./model/usersSchema.js")
-const Video = require("./model/VideoSchema.js")
+const User=require("./models/UserSchema.js")
+const Video = require("./models/VideoSchema.js")
 
 
 

@@ -1,6 +1,6 @@
 const express = require("express");
 require("../db/conn.js");
-const Video = require("../models/VideoSchema.js");
+const Video = require("../models/UserSchema.js");
 const User = require("../models/UserSchema.js");
 const router = express.Router();
 

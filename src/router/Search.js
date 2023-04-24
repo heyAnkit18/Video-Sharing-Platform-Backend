@@ -1,7 +1,7 @@
 const express = require("express");
 require("../db/conn.js");
-const Video = require("../model/VideoSchema.js");
-const User = require("../model/usersSchema.js");
+const Video = require("../models/VideoSchema.js");
+const User = require("../models/UserSchema.js");
 const router = express.Router();
 
 router.get("/search", async (req, res) => {

@@ -1,13 +1,4 @@
 const express = require("express");
-<<<<<<< HEAD
-require("../database/connect.js");
-const JwtAuth = require("../Authentication/JwtVerify.js");
-const VideoSchema = require("../models/VideoSchema.js");
-
-const router = express.Router();
-
-router.post("/VideoUpload", JwtAuth, async (req, res) => {
-=======
 require("../../database/connect.js");
 const JwtAuth = require("../Authentication/JwtVerify.js");
 const VideoSchema = require("../../models/VideoSchema.js");
@@ -16,7 +7,6 @@ const VideoSchema = require("../../models/VideoSchema.js");
 const router = express.Router();
 
 router.post("/VideoUpload",auth ,async (req, res) => {
->>>>>>> 06a85a962a0d1a46fb30c5734f43fe7ff8842b81
   const UserID = req.user._id;
 
   const { Title, Describtion, ImageURL, VideoURL, Category, Visiblity } =

@@ -5,11 +5,10 @@ const bodyparser = require("body-parser");
 const User = require("../../models/UserSchema")
 router.use(bodyparser.urlencoded({ extended: false }));
 router.use(bodyparser.json());
+router.use(express.json());
 
 router.post('/Register',async(req,res)=>{
     const{name,email,phone,profession,password}=req.body
-
-
     if(name && email && phone && profession && password){
             const data = await User.findOne({email:email});
             if(data){
